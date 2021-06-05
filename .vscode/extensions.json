@@ -5,7 +5,7 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
 		"ms-dotnettools.csharp",
-		"eamodio.gitlen",
+		"eamodio.gitlens",
 		"fernandoescolar.vscode-solution-explorer",
 		"formulahendry.dotnet-test-explorer"
 		
