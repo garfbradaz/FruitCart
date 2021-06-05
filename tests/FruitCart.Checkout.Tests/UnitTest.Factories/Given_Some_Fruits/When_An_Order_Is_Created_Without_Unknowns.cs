@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using FruitCart.Checkout.Command.PlaceOrder.Factories;
-using FruitCart.Checkout.Command.PlaceOrder.Models;
 using Xunit;
 
 namespace FruitCart.Checkout.Tests.UnitTest.Factories.Given_Some_Fruits
