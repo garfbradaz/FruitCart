@@ -1,4 +1,4 @@
-name: .NET
+name: .NET Build and Test
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build Projects
       run: dotnet build --no-restore
-    - name: Test
+    - name: Test Projects
       run: dotnet test --no-build --verbosity normal
