@@ -4,16 +4,16 @@ using FruitCart.Checkout.Tests.Shared.Extensions;
 
 namespace FruitCart.Checkout.Tests.Shared.TestDoubles
 {
-    public class TestPlaceOrderRequestWithTwoApplesAndAnOrange : PlaceOrderRequest
+    public class TestPlaceOrderRequestWithWonkyCase : PlaceOrderRequest
     {
-        public TestPlaceOrderRequestWithTwoApplesAndAnOrange()
+        public TestPlaceOrderRequestWithWonkyCase()
         {
             this.Fruits = CreateFruits();
         }
 
         private IEnumerable<string> CreateFruits()
         {
-            return FruitData.WithTwoApplesAndAnOrange();
+            return FruitData.WithWonkyNamingCase();
         }
     }
 }

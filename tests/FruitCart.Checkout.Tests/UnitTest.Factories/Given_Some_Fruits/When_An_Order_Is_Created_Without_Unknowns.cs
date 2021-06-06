@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using FruitCart.Checkout.Tests.Shared.Extensions;
 using Xunit;
 
 namespace FruitCart.Checkout.Tests.UnitTest.Factories.Given_Some_Fruits
@@ -77,15 +78,7 @@ namespace FruitCart.Checkout.Tests.UnitTest.Factories.Given_Some_Fruits
 
         private void Act()
         {
-            this.factoryFixture.Result = this.factoryFixture.Sut.Create(Fruits());
-        }
-
-
-        private IEnumerable<string> Fruits()
-        {
-            yield return "Apple";
-            yield return "Orange";
-            yield return "Apple";
+            this.factoryFixture.Result = this.factoryFixture.Sut.Create(FruitData.WithTwoApplesAndAnOrange());
         }
 
     }
