@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FruitCart.Checkout.Shared;
+using FruitCart.Checkout.Shared.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Models
 {

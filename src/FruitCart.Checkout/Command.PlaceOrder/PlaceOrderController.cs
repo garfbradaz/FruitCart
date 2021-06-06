@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using FruitCart.Checkout.Shared;
+using FruitCart.Checkout.Shared.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
