@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FruitCart.Checkout.Command.PlaceOrder.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Factories
@@ -26,8 +27,8 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
         private IEnumerable<FruitOrderDetailEntity> CreateFruitOrderEntries(IEnumerable<string> fruits)
         {
             List<FruitOrderDetailEntity> result = new List<FruitOrderDetailEntity>();
-
-            foreach (var fruit in fruits)
+            
+            foreach (var fruit in fruits ?? Enumerable.Empty<string>())
             {
                 if (Enum.TryParse<FruitType>(fruit, true, out FruitType type))
                 {
