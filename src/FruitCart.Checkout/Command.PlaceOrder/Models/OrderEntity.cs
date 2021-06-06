@@ -5,10 +5,8 @@ using FruitCart.Checkout.Shared.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Models
 {
-    public class OrderEntity
+    public class OrderEntity : EntityBase
     {
-        public Guid Id { get; set; }
-
         public DateTime DateAndTimeOrderPlaced { get; set; }
 
         public MoneyValueObject TotalCost { get; private set; }
