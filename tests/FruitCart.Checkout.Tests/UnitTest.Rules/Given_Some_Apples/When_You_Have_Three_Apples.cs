@@ -37,7 +37,7 @@ namespace FruitCart.Checkout.Tests.UnitTest.Rules.Given_Some_Apples
 
         public void Act()
         {
-            this.fixture.Order = this.fixture.Factory.Create(FruitData.WithXAmountOfApples(totalApples));
+            this.fixture.Order = this.fixture.Factory.Create(FruitData.WithXAmountOf(totalApples));
             this.fixture.Result = this.fixture.Sut.ReCalculateTotalCost(this.fixture.Order);
         }
     }

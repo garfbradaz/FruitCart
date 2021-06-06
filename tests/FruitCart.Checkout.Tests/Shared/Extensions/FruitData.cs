@@ -12,7 +12,7 @@ namespace FruitCart.Checkout.Tests.Shared.Extensions
             yield return "Apple";
         }
 
-        public static IEnumerable<string> WithXAmountOfApples(int howMany)
+        public static IEnumerable<string> WithXAmountOf(int howMany, string name = "Apple")
         {
             if(howMany == 0)
             {
@@ -23,7 +23,7 @@ namespace FruitCart.Checkout.Tests.Shared.Extensions
 
             for (int i = 0; i < howMany;i++)
             {
-                list.Add("Apple");
+                list.Add(name);
             }
 
             return list;
