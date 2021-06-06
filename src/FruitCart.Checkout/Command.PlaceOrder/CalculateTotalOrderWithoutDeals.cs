@@ -5,11 +5,11 @@ using MediatR;
 
 namespace FruitCart.Checkout.Command.PlaceOrder
 {
-    public class PlaceOrderHandler : IRequestHandler<PlaceOrderCommand, PlaceOrderResponse>
+    public class CalculateTotalOrderWithoutDeals : IRequestHandler<PlaceOrderCommand, PlaceOrderResponse>
     {
         private readonly IOrderEntityFactory orderEntityFactory;
         
-        public PlaceOrderHandler(IOrderEntityFactory orderEntityFactory)
+        public CalculateTotalOrderWithoutDeals(IOrderEntityFactory orderEntityFactory)
         {
             this.orderEntityFactory = orderEntityFactory;
         }
