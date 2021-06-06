@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FruitCart.Checkout.Command.PlaceOrder;
+using FruitCart.Checkout.Tests.Shared.TestDoubles;
 using Xunit;
 
 namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
@@ -22,7 +23,7 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
 
         public async Task InitializeAsync()
         {
-            this.testFixture.Request = PlaceOrderRequest.Create(Fruits());
+            this.testFixture.Request = new TestPlaceOrderRequestWithTwoApplesAndAnOrange();
 
             await this.testFixture.Act();
         }
@@ -45,11 +46,5 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
             this.testFixture.ResponseContent.TotalCostOfOrder.Should().Be(1.45m);
         }
 
-        private IEnumerable<string> Fruits()
-        {
-            yield return "Apple";
-            yield return "Orange";
-            yield return "Apple";
-        }
     }
 }

@@ -6,7 +6,7 @@ namespace FruitCart.Checkout.Command.PlaceOrder
     public class PlaceOrderRequest
     {
         [JsonInclude]
-        public IEnumerable<string> Fruits { get; private set; }
+        public IEnumerable<string> Fruits { get; protected set; }
 
         public static PlaceOrderRequest Create(IEnumerable<string> fruits)
         {
