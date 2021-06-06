@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FruitCart.Checkout.Command.PlaceOrder;
-using FruitCart.Checkout.Shared.Models;
+using FruitCart.Checkout.Shared;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 

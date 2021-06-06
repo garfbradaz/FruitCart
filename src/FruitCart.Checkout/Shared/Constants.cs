@@ -1,4 +1,4 @@
-namespace FruitCart.Checkout.Shared.Models
+namespace FruitCart.Checkout.Shared
 {
     public static class Constants
     {

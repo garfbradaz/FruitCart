@@ -2,7 +2,7 @@ using FruitCart.Checkout.Command.PlaceOrder;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FruitCart.Checkout.Shared.Models
+namespace FruitCart.Checkout.Shared.Extensions
 {
     public static class MediatrExtensions
     {
