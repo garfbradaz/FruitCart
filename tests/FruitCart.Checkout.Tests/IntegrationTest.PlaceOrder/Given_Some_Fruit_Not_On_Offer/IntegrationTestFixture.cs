@@ -8,7 +8,7 @@ using FruitCart.Checkout.Shared;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 
-namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
+namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit_Not_On_Offer
 {
     public class IntegrationTestFixture 
     {

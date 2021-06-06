@@ -5,7 +5,7 @@ using FruitCart.Checkout.Command.PlaceOrder;
 using FruitCart.Checkout.Tests.Shared.TestDoubles;
 using Xunit;
 
-namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
+namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit_Not_On_Offer
 {
     public class When_An_Order_Placed_For_Apples_And_Oranges : IClassFixture<IntegrationTestFixture>, IAsyncLifetime
     {

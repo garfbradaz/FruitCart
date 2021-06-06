@@ -4,6 +4,6 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
 {
     public interface IFruitEntityFactory
     {
-        FruitEntity Create(FruitType type);
+        FruitEntity Create(FruitType type, bool onOffer = false);
     }
 }

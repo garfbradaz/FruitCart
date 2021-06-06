@@ -9,5 +9,7 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Models
 
         public MoneyValueObject Cost { get; set; }
 
+        public bool OnOffer { get; set; }
+
     }
 }
