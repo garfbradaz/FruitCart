@@ -32,7 +32,7 @@ namespace FruitCart.Checkout
             services.AddTransient<IOrderEntityFactory, OrderEntityFactory>()
                     .AddTransient<IFruitEntityFactory, FruitEntityFactory>();
 
-
+            services.AddMediatR(typeof(Startup));
 
         }
 
