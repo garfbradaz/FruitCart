@@ -13,6 +13,10 @@ namespace FruitCart.Checkout.Command.PlaceOrder
             this.mediator = mediator;
         }
 
+        /*Im dying on the hill that this is a POST. The Domain OrderLine would be created as a resource and the calculated
+        total cost  returned.
+        
+        Yes currently we are only calculating InMemory, but in the spirit of RESTful services, this is a POST*/
         [HttpPost]
         [Route("placeorder")]
         public async Task<IActionResult> PlaceOrder([FromBody]PlaceOrderRequest placeOrderRequest)
