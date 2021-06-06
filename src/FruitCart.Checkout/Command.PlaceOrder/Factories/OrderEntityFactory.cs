@@ -4,7 +4,8 @@ using FruitCart.Checkout.Command.PlaceOrder.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Factories
 {
-    public class OrderEntityFactory
+
+    public class OrderEntityFactory : IOrderEntityFactory
     {
         private readonly IFruitEntityFactory fruitEntityFactory;
 
@@ -18,7 +19,7 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
             {
                 Id = Guid.NewGuid(),
                 DateAndTimeOrderPlaced = DateTime.UtcNow,
-                OrderLines = CreateFruitOrderEntries( fruits)
+                OrderLines = CreateFruitOrderEntries(fruits)
             };
         }
 

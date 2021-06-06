@@ -1,3 +1,4 @@
+using FruitCart.Checkout.Command.PlaceOrder.Factories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,12 @@ namespace FruitCart.Checkout
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FruitCart.Checkout", Version = "v1" });
             });
 
-            services.AddMediatR(typeof(Startup));
+            
+            services.AddTransient<IOrderEntityFactory, OrderEntityFactory>()
+                    .AddTransient<IFruitEntityFactory, FruitEntityFactory>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
