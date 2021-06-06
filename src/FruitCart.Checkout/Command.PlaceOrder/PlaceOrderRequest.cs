@@ -1,9 +1,19 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace FruitCart.Checkout.Command.PlaceOrder
 {
     public class PlaceOrderRequest
     {
-        public IEnumerable<string> Fruits { get; set; }
+        [JsonInclude]
+        public IEnumerable<string> Fruits { get; private set; }
+
+        public static PlaceOrderRequest Create(IEnumerable<string> fruits)
+        {
+            return new PlaceOrderRequest()
+            {
+                Fruits = fruits
+            };
+        }
     }
 }
