@@ -34,7 +34,7 @@ The `launch.json` has everything you need to launch the API project. Once starte
 
 # Client
 
-Currently for Step 1 I'm only using **Postman** to test it is working (obviously I have unit and integration tests).
+Currently for Step 1 & Step 2 I'm only using **Postman** to test it is working (obviously I have unit and integration tests).
 
 I have included 2 postman files within the root of the project in a `.\postman` folder. This includes:
 
@@ -43,3 +43,20 @@ I have included 2 postman files within the root of the project in a `.\postman` 
 * Postman environment variables for Local Dev
 
 You will need to [**import**](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/) these into Postman to use. 
+
+# Architecture
+
+API project that uses a lightweight **CQRS** pattern using [vertical slicing](https://jimmybogard.com/vertical-slice-architecture/) for the feature folders. This will come into its own when You have more `Action.Features`, example `Query.GetFruits` allowing you to isolate your features, domain models, CQRS DTOs etc.
+
+At the moment there are two core Handlers `CalculateTotalOrderWithoutDeals` (Step 1) and `CalculateTotalOrderWithDeals` (Step 2) that handle the core business logic of the domain.
+
+## TODO but not enough time
+
+I will be doing a _Step 3_ which I hope to have done _if_ I get to the next round
+* The Value Objects are not proper DDD Value Objects, they are missing the `IEquatable` implementation within a Base Class OR use the new C# 9.0 `record` feature.
+
+* I wanted to create a simple Blazor UI for the Point of Sale System, so you dont have to use Postman each time you want to test it, inlcuding the `Query.GetFruits` feature for obtaining fruits.
+
+* Maybe a persistence layer, and incorporate that. At the moment there are some hacky default Costs for the fruits within the Factories that dont sit well with me.
+
+* If a persistence layer existed, then I would add a `DOCKERFILE` and `docker-compose.yml` to allow you to run locally without needing to install anything.
