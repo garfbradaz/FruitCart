@@ -5,7 +5,7 @@ using FruitCart.Checkout.Shared.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Models
 {
-    public class OrderEntity : EntityBase
+    public class OrderEntity : EntityBase, ICloneable
     {
         public DateTime DateAndTimeOrderPlaced { get; set; }
 
@@ -22,6 +22,20 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Models
 
             this.TotalCost = MoneyValueObject.Create(totalCost, CurrencyISO.GBP);
 
+        }
+
+        public object Clone()
+        {
+            var anotherOrder = (OrderEntity)this.MemberwiseClone();
+            anotherOrder.DateAndTimeOrderPlaced = this.DateAndTimeOrderPlaced;
+            anotherOrder.OrderLines = this.OrderLines.ToList();
+
+            if(this.TotalCost != null)
+            {
+                anotherOrder.TotalCost = MoneyValueObject.Create(this.TotalCost.Value, this.TotalCost.Currency);
+            }
+            
+            return anotherOrder;
 
         }
     }

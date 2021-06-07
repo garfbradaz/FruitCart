@@ -19,15 +19,17 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Rules
                 return default;
             }
 
-            order.OrderLines = ClearCostEverySecondOrderLine(order);
+            var savedOrder = order.Clone() as OrderEntity;
 
-            order.CalculateTotalCost();
+            savedOrder.OrderLines = ClearCostEveryThirdOrderLine();
 
-            return order.TotalCost.Value;
+            savedOrder.CalculateTotalCost();
 
-            IEnumerable<FruitOrderDetailEntity> ClearCostEverySecondOrderLine(OrderEntity order)
+            return savedOrder.TotalCost.Value;
+
+            IEnumerable<FruitOrderDetailEntity> ClearCostEveryThirdOrderLine()
             {
-                var listOfOrders = order.OrderLines.ToList() ?? new List<FruitOrderDetailEntity>();
+                var listOfOrders = savedOrder.OrderLines.Where(orderline => orderline.ProductOrdered.Fruit.Type == FruitType.Orange).ToList() ?? new List<FruitOrderDetailEntity>();
 
                 var count = 1;
                 
