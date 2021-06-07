@@ -8,7 +8,10 @@ namespace FruitCart.Checkout.Shared.Extensions
     {
         public static IServiceCollection AddMeditrPipelineRegistrations(this IServiceCollection service)
         {
-            service.AddTransient(typeof(IPipelineBehavior<PlaceOrderCommand,PlaceOrderResponse>), typeof(CalculateTotalOrderWithoutDeals));
+            /*Have to register in order you wish them to fire off*/
+            service
+                .AddTransient(typeof(IPipelineBehavior<PlaceOrderCommand,PlaceOrderResponse>), typeof(CalculateTotalOrderWithoutDeals))
+                .AddTransient(typeof(IPipelineBehavior<PlaceOrderCommand,PlaceOrderResponse>), typeof(CalculateTotalOrderWithDeals));
 
             return service;
         }

@@ -22,7 +22,7 @@ namespace FruitCart.Checkout.Command.PlaceOrder
         [Route(Constants.ResourcePath.PlaceAnOrder)]
         public async Task<IActionResult> PlaceOrder([FromBody]PlaceOrderRequest placeOrderRequest)
         {
-            var command = PlaceOrderCommand.Create(placeOrderRequest.Fruits);
+            var command = PlaceOrderCommand.Create(placeOrderRequest.Fruits, placeOrderRequest.WithDeals);
 
             var result = await mediator.Send(command);
 

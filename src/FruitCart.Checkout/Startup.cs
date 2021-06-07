@@ -1,4 +1,6 @@
 using FruitCart.Checkout.Command.PlaceOrder.Factories;
+using FruitCart.Checkout.Command.PlaceOrder.Rules;
+using FruitCart.Checkout.Shared.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,11 +30,14 @@ namespace FruitCart.Checkout
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FruitCart.Checkout", Version = "v1" });
             });
 
-            
-            services.AddTransient<IOrderEntityFactory, OrderEntityFactory>()
-                    .AddTransient<IFruitEntityFactory, FruitEntityFactory>();
 
-            services.AddMediatR(typeof(Startup));
+            services.AddTransient<IOrderEntityFactory, OrderEntityFactory>()
+                    .AddTransient<IFruitEntityFactory, FruitEntityFactory>()
+                    .AddTransient<BogOffRuleForApples>()
+                    .AddTransient<ThreeForThePriceOfTwoRuleForOranges>();
+
+            services.AddMediatR(typeof(Startup))
+                    .AddMeditrPipelineRegistrations();
 
         }
 

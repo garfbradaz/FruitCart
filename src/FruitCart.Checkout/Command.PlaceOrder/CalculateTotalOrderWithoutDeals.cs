@@ -5,7 +5,7 @@ using MediatR;
 
 namespace FruitCart.Checkout.Command.PlaceOrder
 {
-    public class CalculateTotalOrderWithoutDeals : IRequestHandler<PlaceOrderCommand, PlaceOrderResponse>
+    public class CalculateTotalOrderWithoutDeals : IPipelineBehavior<PlaceOrderCommand,PlaceOrderResponse>
     {
         private readonly IOrderEntityFactory orderEntityFactory;
         
@@ -14,14 +14,19 @@ namespace FruitCart.Checkout.Command.PlaceOrder
             this.orderEntityFactory = orderEntityFactory;
         }
 
-        public Task<PlaceOrderResponse> Handle(PlaceOrderCommand request, CancellationToken cancellationToken)
+        public async Task<PlaceOrderResponse> Handle(PlaceOrderCommand request, CancellationToken cancellationToken, RequestHandlerDelegate<PlaceOrderResponse> next)
         {
+            if(request.WithDeals)
+            {
+                var responseFromNextHandler = await next();
+                return responseFromNextHandler;
+            }
+
             var order = this.orderEntityFactory.Create(request.Fruits);
 
             order.CalculateTotalCost();
 
-            return Task.FromResult(PlaceOrderResponse.Create(order.TotalCost.Value));
+            return PlaceOrderResponse.Create(order.TotalCost.Value);
         }
-
     }
 }
