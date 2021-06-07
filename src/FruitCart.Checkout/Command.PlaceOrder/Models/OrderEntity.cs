@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FruitCart.Checkout.Shared;
+using FruitCart.Checkout.Shared.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Models
 {
-    public class OrderEntity
+    public class OrderEntity : EntityBase, ICloneable
     {
-        public Guid Id { get; set; }
-
         public DateTime DateAndTimeOrderPlaced { get; set; }
 
         public MoneyValueObject TotalCost { get; private set; }
@@ -24,6 +22,20 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Models
 
             this.TotalCost = MoneyValueObject.Create(totalCost, CurrencyISO.GBP);
 
+        }
+
+        public object Clone()
+        {
+            var anotherOrder = (OrderEntity)this.MemberwiseClone();
+            anotherOrder.DateAndTimeOrderPlaced = this.DateAndTimeOrderPlaced;
+            anotherOrder.OrderLines = this.OrderLines.ToList();
+
+            if(this.TotalCost != null)
+            {
+                anotherOrder.TotalCost = MoneyValueObject.Create(this.TotalCost.Value, this.TotalCost.Currency);
+            }
+            
+            return anotherOrder;
 
         }
     }

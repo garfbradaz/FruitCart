@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FruitCart.Checkout.Tests.Shared.Extensions
 {
@@ -9,6 +10,23 @@ namespace FruitCart.Checkout.Tests.Shared.Extensions
             yield return "Apple";
             yield return "Orange";
             yield return "Apple";
+        }
+
+        public static IEnumerable<string> WithXAmountOf(int howMany, string name = "Apple")
+        {
+            if(howMany == 0)
+            {
+                return Enumerable.Empty<string>();
+            }
+
+            var list = new List<string>();
+
+            for (int i = 0; i < howMany;i++)
+            {
+                list.Add(name);
+            }
+
+            return list;
         }
 
         public static IEnumerable<string> WithWonkyNamingCase()

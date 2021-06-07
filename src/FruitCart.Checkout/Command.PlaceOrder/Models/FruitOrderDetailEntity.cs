@@ -1,11 +1,9 @@
-using System;
+using FruitCart.Checkout.Shared.Models;
 
 namespace FruitCart.Checkout.Command.PlaceOrder.Models
 {
-    public class FruitOrderDetailEntity
+    public class FruitOrderDetailEntity : EntityBase
     {
-        public Guid Id { get; set; }
-
         public FruitEntity ProductOrdered { get; set; }
 
     }

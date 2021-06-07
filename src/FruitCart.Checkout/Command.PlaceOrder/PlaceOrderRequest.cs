@@ -8,11 +8,15 @@ namespace FruitCart.Checkout.Command.PlaceOrder
         [JsonInclude]
         public IEnumerable<string> Fruits { get; protected set; }
 
-        public static PlaceOrderRequest Create(IEnumerable<string> fruits)
+        [JsonInclude]
+        public bool WithDeals { get; protected set; }
+
+        public static PlaceOrderRequest Create(IEnumerable<string> fruits, bool withDeals)
         {
             return new PlaceOrderRequest()
             {
-                Fruits = fruits
+                Fruits = fruits,
+                WithDeals = withDeals
             };
         }
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using FruitCart.Checkout.Command.PlaceOrder.Models;
-using FruitCart.Checkout.Shared;
+using FruitCart.Checkout.Shared.Models;
 using Xunit;
 
 namespace FruitCart.Checkout.Tests.UnitTest.Given_A_Apple_And_Orange

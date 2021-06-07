@@ -1,4 +1,4 @@
-namespace FruitCart.Checkout.Shared
+namespace FruitCart.Checkout.Shared.Models
 {
     public class MoneyValueObject
     {

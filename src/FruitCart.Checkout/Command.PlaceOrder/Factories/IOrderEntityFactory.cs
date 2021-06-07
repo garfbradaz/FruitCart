@@ -5,6 +5,6 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
 {
     public interface IOrderEntityFactory
     {
-        OrderEntity Create(IEnumerable<string> fruits);
+        OrderEntity Create(IEnumerable<string> fruits,  bool fruitsOnOffer = false);
     }
 }

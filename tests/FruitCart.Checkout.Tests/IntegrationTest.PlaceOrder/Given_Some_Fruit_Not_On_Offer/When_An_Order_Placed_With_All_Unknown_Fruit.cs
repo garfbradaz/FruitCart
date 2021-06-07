@@ -3,13 +3,13 @@ using FluentAssertions;
 using FruitCart.Checkout.Tests.Shared.TestDoubles;
 using Xunit;
 
-namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
+namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit_Not_On_Offer
 {
-    public class When_An_Order_Placed_With_Wonky_Case : IClassFixture<IntegrationTestFixture>, IAsyncLifetime
+    public class When_An_Order_Placed_With_All_Unknown_Fruit : IClassFixture<IntegrationTestFixture>, IAsyncLifetime
     {
         private readonly IntegrationTestFixture testFixture;
 
-        public When_An_Order_Placed_With_Wonky_Case(IntegrationTestFixture testFixture)
+        public When_An_Order_Placed_With_All_Unknown_Fruit(IntegrationTestFixture testFixture)
         {
             this.testFixture = testFixture;
         }
@@ -21,7 +21,7 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
 
         public async Task InitializeAsync()
         {
-            this.testFixture.Request = new TestPlaceOrderRequestWithWonkyCase();
+            this.testFixture.Request = new TestPlaceOrderRequestWithAllUnknowns();
 
             await this.testFixture.Act();
         }
@@ -41,7 +41,7 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
         [Fact]
         public void Its_Total_Cost_Should_Be_Correct()
         {
-            this.testFixture.ResponseContent.TotalCostOfOrder.Should().Be(1.45m);
+            this.testFixture.ResponseContent.TotalCostOfOrder.Should().Be(0.0m);
         }
 
     }

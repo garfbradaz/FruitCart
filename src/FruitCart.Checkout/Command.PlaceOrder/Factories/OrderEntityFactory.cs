@@ -14,17 +14,18 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
         {
             this.fruitEntityFactory = fruitEntityFactory;
         }
-        public OrderEntity Create(IEnumerable<string> fruits)
+
+        public OrderEntity Create(IEnumerable<string> fruits, bool fruitsOnOffer = false)
         {
             return new OrderEntity()
             {
                 Id = Guid.NewGuid(),
                 DateAndTimeOrderPlaced = DateTime.UtcNow,
-                OrderLines = CreateFruitOrderEntries(fruits)
+                OrderLines = CreateFruitOrderEntries(fruits, fruitsOnOffer)
             };
         }
 
-        private IEnumerable<FruitOrderDetailEntity> CreateFruitOrderEntries(IEnumerable<string> fruits)
+        private IEnumerable<FruitOrderDetailEntity> CreateFruitOrderEntries(IEnumerable<string> fruits, bool fruitsOnOffer)
         {
             List<FruitOrderDetailEntity> result = new List<FruitOrderDetailEntity>();
             
@@ -35,7 +36,7 @@ namespace FruitCart.Checkout.Command.PlaceOrder.Factories
                     result.Add(new FruitOrderDetailEntity()
                     {
                         Id = Guid.NewGuid(),
-                        ProductOrdered = fruitEntityFactory.Create(type)
+                        ProductOrdered = fruitEntityFactory.Create(type, fruitsOnOffer)
                     });
                 }
             }

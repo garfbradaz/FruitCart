@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
-using FruitCart.Checkout.Command.PlaceOrder;
 using FruitCart.Checkout.Tests.Shared.TestDoubles;
 using Xunit;
 
-namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
+namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit_On_Offer
 {
     public class When_An_Order_Placed_For_Apples_And_Oranges : IClassFixture<IntegrationTestFixture>, IAsyncLifetime
     {
@@ -23,7 +21,7 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
 
         public async Task InitializeAsync()
         {
-            this.testFixture.Request = new TestPlaceOrderRequestWithTwoApplesAndAnOrange();
+            this.testFixture.Request = new TestPlaceOrderRequestWithTwoApplesAndAnOrangeOnOffer();
 
             await this.testFixture.Act();
         }
@@ -43,7 +41,7 @@ namespace FruitCart.Checkout.Tests.IntegrationTest.PlaceOrder.Given_Some_Fruit
         [Fact]
         public void Its_Total_Cost_Should_Be_Correct()
         {
-            this.testFixture.ResponseContent.TotalCostOfOrder.Should().Be(1.45m);
+            this.testFixture.ResponseContent.TotalCostOfOrder.Should().Be(0.85m);
         }
 
     }

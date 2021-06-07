@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
+using FruitCart.Checkout.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FruitCart.Checkout.Command.PlaceOrder
 {
-    [Route("api/v1/checkout")]
+    [Route(Constants.BaseRoute.Checkout)]
     public class PlaceOrderController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -18,10 +19,10 @@ namespace FruitCart.Checkout.Command.PlaceOrder
         
         Yes currently we are only calculating InMemory, but in the spirit of RESTful services, this is a POST*/
         [HttpPost]
-        [Route("placeorder")]
+        [Route(Constants.ResourcePath.PlaceAnOrder)]
         public async Task<IActionResult> PlaceOrder([FromBody]PlaceOrderRequest placeOrderRequest)
         {
-            var command = PlaceOrderCommand.Create(placeOrderRequest.Fruits);
+            var command = PlaceOrderCommand.Create(placeOrderRequest.Fruits, placeOrderRequest.WithDeals);
 
             var result = await mediator.Send(command);
 
