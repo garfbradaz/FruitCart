@@ -9,220 +9,392 @@
 			"name": "Tests",
 			"item": [
 				{
-					"name": "With no Fruits",
-					"event": [
+					"name": "No Offers",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success Response Status\", function(){\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Total Cost Returned as Zero\", function(){\r",
-									"    const json = pm.response.json();\r",
-									"\r",
-									"    pm.expect(json.totalCostOfOrder).to.eql(0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "With no Fruits",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Returned as Zero\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(0);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/api/v1/checkout/placeorder",
-							"host": [
-								"{{baseURL}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"checkout",
-								"placeorder"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "With Apples and Oranges",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "With Apples and Oranges with Wonky Case",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(0.60);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fruits\": [\r\n    \"jkgdfnjfgnj\",\r\n    \"LLLL\",\r\n    \"Orraange\",\r\n    \"Pineapple\",\r\n    \"APPle\",\r\n    \"Pear\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "With Apples and Unknown Fruits",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "With Apples and Oranges",
-					"event": [
+					"name": "With Offers",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success Response Status\", function(){\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Total Cost Should be Correct\", function(){\r",
-									"    const json = pm.response.json();\r",
-									"\r",
-									"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "With Apples and Oranges",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/api/v1/checkout/placeorder",
-							"host": [
-								"{{baseURL}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"checkout",
-								"placeorder"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "With Apples and Oranges with Wonky Case",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"withDeals\": true,\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success Response Status\", function(){\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Total Cost Should be Correct\", function(){\r",
-									"    const json = pm.response.json();\r",
-									"\r",
-									"    pm.expect(json.totalCostOfOrder).to.eql(0.60);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"fruits\": [\r\n    \"jkgdfnjfgnj\",\r\n    \"LLLL\",\r\n    \"Orraange\",\r\n    \"Pineapple\",\r\n    \"APPle\",\r\n    \"Pear\"\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "With Two Apples and Oranges",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/api/v1/checkout/placeorder",
-							"host": [
-								"{{baseURL}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"checkout",
-								"placeorder"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "With Apples and Unknown Fruits",
-					"event": [
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"withDeals\": true,\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Success Response Status\", function(){\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Total Cost Should be Correct\", function(){\r",
-									"    const json = pm.response.json();\r",
-									"\r",
-									"    pm.expect(json.totalCostOfOrder).to.eql(1.10);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"fruits\": [\r\n    \"Apple\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "With Three Oranges",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Success Response Status\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Total Cost Should be Correct\", function(){\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.totalCostOfOrder).to.eql(0.50);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/api/v1/checkout/placeorder",
-							"host": [
-								"{{baseURL}}"
 							],
-							"path": [
-								"api",
-								"v1",
-								"checkout",
-								"placeorder"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"withDeals\": true,\r\n  \"fruits\": [\r\n    \"Orange\",\r\n    \"Orange\",\r\n    \"Orange\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/checkout/placeorder",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"checkout",
+										"placeorder"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
